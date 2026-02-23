@@ -1,0 +1,143 @@
+---
+// src/components/CircuitBackground.astro
+---
+
+<div
+    class="absolute inset-0 overflow-hidden pointer-events-none select-none z-0"
+>
+    <svg
+        class="w-full h-full"
+        viewBox="0 0 1400 800"
+        preserveAspectRatio="xMidYMid slice"
+    >
+        <defs>
+            <g id="lines-outer">
+                <path
+                    d="M 0 100 H 240 Q 265 100 265 125 L 265 325 Q 265 350 290 350 H 415 Q 440 350 440 375 Q 440 400 465 400 H 630"
+                ></path>
+                <path
+                    d="M 0 700 H 240 Q 265 700 265 675 L 265 475 Q 265 450 290 450 H 415 Q 440 450 440 425 Q 440 400 465 400 H 630"
+                ></path>
+            </g>
+
+            <g id="lines-middle">
+                <path
+                    d="M 0 200 H 165 Q 190 200 190 225 L 190 275 Q 190 300 215 300 H 315 Q 340 300 340 325 L 340 375 Q 340 400 365 400 H 630"
+                ></path>
+                <path
+                    d="M 0 600 H 165 Q 190 600 190 575 L 190 525 Q 190 500 215 500 H 315 Q 340 500 340 475 L 340 425 Q 340 400 365 400 H 630"
+                ></path>
+            </g>
+
+            <g id="lines-inner">
+                <path
+                    d="M 0 350 H 165 Q 190 350 190 375 Q 190 400 215 400 H 630"
+                ></path>
+                <path
+                    d="M 0 450 H 165 Q 190 450 190 425 Q 190 400 215 400 H 630"
+                ></path>
+            </g>
+
+            <linearGradient
+                id="fade-gradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="0%"
+            >
+                <stop offset="0%" stop-color="#F0F6FF" stop-opacity="0"></stop>
+                <stop offset="30%" stop-color="#F0F6FF" stop-opacity="0.15"
+                ></stop>
+                <stop offset="70%" stop-color="#F0F6FF" stop-opacity="0.6"
+                ></stop>
+                <stop offset="100%" stop-color="#F0F6FF" stop-opacity="1"
+                ></stop>
+            </linearGradient>
+        </defs>
+
+        <g class="circuit-group" transform="translate(0, 135)">
+            <use
+                href="#lines-outer"
+                stroke="#1f1f22"
+                stroke-width="0"
+                fill="none"></use>
+            <use
+                href="#lines-middle"
+                stroke="#1f1f22"
+                stroke-width="0"
+                fill="none"></use>
+            <use
+                href="#lines-inner"
+                stroke="#1f1f22"
+                stroke-width="0"
+                fill="none"></use>
+
+            <use href="#lines-outer" class="clean-line l-outer"></use>
+            <use href="#lines-middle" class="clean-line l-middle"></use>
+            <use href="#lines-inner" class="clean-line l-inner"></use>
+        </g>
+
+        <g transform="translate(1400, 135) scale(-1, 1)">
+            <use
+                href="#lines-outer"
+                stroke="#1f1f22"
+                stroke-width="0"
+                fill="none"></use>
+            <use
+                href="#lines-middle"
+                stroke="#1f1f22"
+                stroke-width="0"
+                fill="none"></use>
+            <use
+                href="#lines-inner"
+                stroke="#1f1f22"
+                stroke-width="0"
+                fill="none"></use>
+
+            <use href="#lines-outer" class="clean-line l-outer"></use>
+            <use href="#lines-middle" class="clean-line l-middle"></use>
+            <use href="#lines-inner" class="clean-line l-inner"></use>
+        </g>
+    </svg>
+</div>
+
+<style>
+    /* Ajustei levemente os tempos para compensar o fio mais longo */
+    .l-outer {
+        --len: 1000;
+    }
+    .l-middle {
+        --len: 800;
+    }
+    .l-inner {
+        --len: 700;
+    }
+
+    .clean-line {
+        stroke: url(#fade-gradient);
+        stroke-width: 1.5px;
+        stroke-linecap: round;
+        fill: none;
+        stroke-dasharray: var(--len);
+        stroke-dashoffset: var(--len);
+        animation: mascara-svg-sync 4s linear infinite;
+    }
+
+    @keyframes mascara-svg-sync {
+        0% {
+            stroke-dashoffset: var(--len);
+            opacity: 0;
+        }
+        35% {
+            opacity: 1;
+        }
+        75% {
+            stroke-dashoffset: 0;
+            opacity: 1;
+        }
+        100% {
+            stroke-dashoffset: 0;
+            opacity: 0;
+        }
+    }
+</style>

@@ -1,0 +1,137 @@
+---
+// src/pages/teste-ramificacao-dupla.astro
+---
+
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Ramificação Dupla</title>
+    </head>
+    <body
+        class="bg-black h-screen w-full overflow-hidden flex items-center justify-center"
+    >
+        <svg
+            class="absolute w-full h-full pointer-events-none select-none"
+            viewBox="0 0 1400 800"
+            preserveAspectRatio="xMidYMid slice"
+        >
+            <defs>
+                <g id="branch-pattern">
+                    <path
+                        d="M 0 100 H 240 Q 265 100 265 125 L 265 325 Q 265 350 290 350 H 415 Q 440 350 440 375 L 440 375 Q 440 400 465 400 H 500"
+                    ></path>
+                    <path
+                        d="M 0 700 H 240 Q 265 700 265 675 L 265 475 Q 265 450 290 450 H 415 Q 440 450 440 425 L 440 425 Q 440 400 465 400 H 500"
+                    ></path>
+                    <path
+                        d="M 0 200 H 165 Q 190 200 190 225 L 190 275 Q 190 300 215 300 H 315 Q 340 300 340 325 L 340 375 Q 340 400 365 400 H 500"
+                    ></path>
+                    <path
+                        d="M 0 600 H 165 Q 190 600 190 575 L 190 525 Q 190 500 215 500 H 315 Q 340 500 340 475 L 340 425 Q 340 400 365 400 H 500"
+                    ></path>
+                    <path
+                        d="M 0 350 H 165 Q 190 350 190 375 L 190 375 Q 190 400 215 400 H 500"
+                    ></path>
+                    <path
+                        d="M 0 450 H 165 Q 190 450 190 425 L 190 425 Q 190 400 215 400 H 500"
+                    ></path>
+                </g>
+
+                <linearGradient
+                    id="purple-gradient"
+                    x1="0%"
+                    y1="0%"
+                    x2="100%"
+                    y2="0%"
+                >
+                    <stop offset="0%" stop-color="#7e22ce" stop-opacity="0"
+                    ></stop>
+                    <stop offset="50%" stop-color="#a855f7" stop-opacity="1"
+                    ></stop>
+                    <stop offset="100%" stop-color="#d8b4fe" stop-opacity="0"
+                    ></stop>
+                </linearGradient>
+
+                <filter
+                    id="purple-glow"
+                    x="-50%"
+                    y="-50%"
+                    width="200%"
+                    height="200%"
+                >
+                    <feGaussianBlur stdDeviation="3" result="blur"
+                    ></feGaussianBlur>
+                    <feFlood flood-color="#a855f7" result="color"></feFlood>
+                    <feComposite
+                        in="color"
+                        in2="blur"
+                        operator="in"
+                        result="coloredBlur"></feComposite>
+                    <feMerge>
+                        <feMergeNode in="coloredBlur"></feMergeNode>
+                        <feMergeNode in="SourceGraphic"></feMergeNode>
+                    </feMerge>
+                </filter>
+            </defs>
+
+            <g class="circuit-group">
+                <use
+                    href="#branch-pattern"
+                    stroke="#1f1f22"
+                    stroke-width="3"
+                    fill="none"></use>
+
+                <use
+                    href="#branch-pattern"
+                    stroke="url(#purple-gradient)"
+                    stroke-width="2"
+                    fill="none"
+                    filter="url(#purple-glow)"
+                    class="pulse-anim"></use>
+            </g>
+
+            <g transform="translate(1400, 0) scale(-1, 1)">
+                <use
+                    href="#branch-pattern"
+                    stroke="#1f1f22"
+                    stroke-width="3"
+                    fill="none"></use>
+
+                <use
+                    href="#branch-pattern"
+                    stroke="url(#purple-gradient)"
+                    stroke-width="2"
+                    fill="none"
+                    filter="url(#purple-glow)"
+                    class="pulse-anim"></use>
+            </g>
+        </svg>
+
+        <div class="relative z-10 text-center">
+            <h1 class="text-5xl font-bold text-white mb-2 tracking-tighter">
+                PORTFÓLIO
+            </h1>
+            <p class="text-purple-400 tracking-[0.3em] text-sm font-mono">
+                SYSTEM ONLINE
+            </p>
+        </div>
+    </body>
+</html>
+
+<style>
+    /* ANIMAÇÃO DE FLUXO */
+    .pulse-anim {
+        /* O traço é grande o suficiente para cobrir tudo, mas com espaço vazio gigante */
+        stroke-dasharray: 400 1000;
+        stroke-dashoffset: 1400; /* Começa escondido */
+        animation: flow 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    @keyframes flow {
+        to {
+            stroke-dashoffset: -600; /* Viaja até o final da linha */
+        }
+    }
+</style>
