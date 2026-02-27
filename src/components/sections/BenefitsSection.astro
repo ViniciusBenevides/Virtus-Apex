@@ -27,20 +27,21 @@ const benefits = [
 ];
 ---
 
-{/* --- 1. ONDAS EM CANVAS (Z-INDEX 0: Atrás dos cards) --- */}
-<div
-    class="absolute inset-0 z-0 pointer-events-none overflow-hidden h-full flex items-center justify-center"
->
-    <canvas id="wave-canvas" class="w-full h-full"></canvas>
-</div>
-
 {/* 2. CONTAINER DOS CARDS (Z-INDEX 10: Acima das ondas) */}
 <div class="w-full px-4 mt-20 relative z-10">
     {/* Bloco Principal do Card */}
     <div
-        class="max-w-7xl mx-auto rounded-b-[40px] md:rounded-b-[60px] relative shadow-2xl shadow-black/50"
+        class="max-w-7xl mx-auto rounded-t-[30px] md:rounded-t-none rounded-b-[40px] md:rounded-b-[60px] relative shadow-2xl shadow-black/50"
         style="background-color: var(--card-section-bg);"
     >
+        {/* --- 1. ONDAS EM CANVAS (Z-INDEX 0: Dentro dos cards) --- */}
+        <div
+            class="absolute inset-0 z-10 pointer-events-none overflow-hidden rounded-t-[30px] md:rounded-t-none rounded-b-[40px] md:rounded-b-[60px] flex items-center justify-center"
+        >
+            <canvas
+                id="wave-canvas"
+                class="w-full h-full opacity-80 mix-blend-lighten"></canvas>
+        </div>
         {/* --- HEADER DO CARD (A Curva "Derretida") --- */}
         <div
             class="absolute -top-[40px] left-0 right-0 h-[41px] flex items-end justify-center w-full overflow-visible pointer-events-none hidden md:flex"
@@ -111,7 +112,7 @@ const benefits = [
                 {
                     benefits.map((item, index) => (
                         <div
-                            class={`group p-8 rounded-3xl bg-[#0a0b0f] border border-[#1f2125] hover:border-[#9AEBF7]/30 transition-all duration-300 hover:-translate-y-1 animate-on-scroll delay-${((index % 3) + 1) * 100}`}
+                            class={`group p-8 rounded-3xl bg-[#0a0b0f] border border-[#1f2125] hover:border-[#9AEBF7]/50 hover:shadow-[0_8px_30px_rgba(154,235,247,0.12)] transition-all duration-500 ease-out hover:-translate-y-2 active:scale-[0.98] active:translate-y-0 cursor-pointer animate-on-scroll delay-${((index % 3) + 1) * 100}`}
                         >
                             <h3
                                 class="text-xl font-bold mb-4 text-[#E8EBF0] group-hover:text-[#9AEBF7] transition-colors"
