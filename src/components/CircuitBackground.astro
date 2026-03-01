@@ -3,11 +3,11 @@
 ---
 
 <div
-    class="absolute pointer-events-none select-none -z-10"
-    style="left: 50%; top: 50%; width: 150vw; height: max(150vh, 1000px); transform: translate(-50%, -50%);"
+    class="absolute pointer-events-none select-none -z-10 w-[200vw] sm:w-[150vw] md:w-[100vw] max-w-[1000px] xl:max-w-[1200px]"
+    style="left: 50%; top: 50%; height: 100%; min-height: 500px; transform: translate(-50%, -50%);"
 >
     <svg
-        class="w-full h-full"
+        class="w-full h-full opacity-60 md:opacity-100 transition-opacity duration-300"
         viewBox="0 0 1400 800"
         preserveAspectRatio="xMidYMid slice"
     >
@@ -46,8 +46,9 @@
                 x2="100%"
                 y2="0%"
             >
-                <stop offset="0%" stop-color="#F0F6FF" stop-opacity="0"></stop>
-                <stop offset="30%" stop-color="#F0F6FF" stop-opacity="0.15"
+                <stop offset="0%" stop-color="#F0F6FF" stop-opacity="0.05"
+                ></stop>
+                <stop offset="30%" stop-color="#F0F6FF" stop-opacity="0.2"
                 ></stop>
                 <stop offset="70%" stop-color="#F0F6FF" stop-opacity="0.6"
                 ></stop>

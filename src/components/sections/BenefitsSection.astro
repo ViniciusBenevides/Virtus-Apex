@@ -36,7 +36,7 @@ const benefits = [
     >
         {/* --- 1. ONDAS EM CANVAS (Z-INDEX 0: Dentro dos cards) --- */}
         <div
-            class="absolute inset-0 z-10 pointer-events-none overflow-hidden rounded-t-[30px] md:rounded-t-none rounded-b-[40px] md:rounded-b-[60px] flex items-center justify-center"
+            class="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[100vw] z-0 pointer-events-none flex items-center justify-center overflow-hidden"
         >
             <canvas
                 id="wave-canvas"
@@ -112,20 +112,24 @@ const benefits = [
                 {
                     benefits.map((item, index) => (
                         <div
-                            class={`group p-8 rounded-3xl bg-[#0a0b0f] border border-[#1f2125] hover:border-[#9AEBF7]/50 hover:shadow-[0_8px_30px_rgba(154,235,247,0.12)] transition-all duration-500 ease-out hover:-translate-y-2 active:scale-[0.98] active:translate-y-0 cursor-pointer animate-on-scroll delay-${((index % 3) + 1) * 100}`}
+                            class={`animate-on-scroll delay-${((index % 3) + 1) * 100} h-full`}
                         >
-                            <h3
-                                class="text-xl font-bold mb-4 text-[#E8EBF0] group-hover:text-[#9AEBF7] transition-colors"
-                                style="font-family: 'Paralucent', sans-serif;"
+                            <div
+                                class={`h-full group p-8 rounded-3xl bg-[#0a0b0f] border border-[#1f2125] hover:border-[#9AEBF7]/50 hover:shadow-[0_8px_30px_rgba(154,235,247,0.12)] transition-all duration-1000 ease-in-out hover:-translate-y-2 active:scale-[0.98] active:translate-y-0 cursor-pointer`}
                             >
-                                {item.title}
-                            </h3>
-                            <p
-                                class="text-[#ABAEB4] text-sm leading-relaxed font-light"
-                                style="font-family: 'Paralucent', sans-serif;"
-                            >
-                                {item.text}
-                            </p>
+                                <h3
+                                    class="text-xl font-bold mb-4 text-[#E8EBF0] group-hover:text-[#9AEBF7] transition-colors duration-1000"
+                                    style="font-family: 'Paralucent', sans-serif;"
+                                >
+                                    {item.title}
+                                </h3>
+                                <p
+                                    class="text-[#ABAEB4] text-sm leading-relaxed font-light"
+                                    style="font-family: 'Paralucent', sans-serif;"
+                                >
+                                    {item.text}
+                                </p>
+                            </div>
                         </div>
                     ))
                 }
