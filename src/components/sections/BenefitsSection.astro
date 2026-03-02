@@ -115,12 +115,11 @@ const benefits = [
                             class={`animate-on-scroll delay-${((index % 3) + 1) * 100} h-full`}
                         >
                             <div
-                                class={`h-full group p-8 rounded-3xl bg-[#0a0b0f] border border-[#1f2125] hover:border-[#9AEBF7]/50 hover:shadow-[0_8px_30px_rgba(154,235,247,0.12)] transition-all duration-1000 ease-in-out hover:-translate-y-2 active:scale-[0.98] active:translate-y-0 cursor-pointer`}
-                                ontouchstart=""
+                                class={`benefit-card h-full group p-8 rounded-3xl bg-[#0a0b0f] border border-[#1f2125] hover:border-[#9AEBF7]/50 hover:shadow-[0_8px_30px_rgba(154,235,247,0.12)] transition-all duration-1000 ease-in-out hover:-translate-y-2 [&.is-active]:border-[#9AEBF7]/50 [&.is-active]:shadow-[0_8px_30px_rgba(154,235,247,0.12)] [&.is-active]:-translate-y-2 active:scale-[0.98] active:translate-y-0 cursor-pointer`}
                                 tabindex="0"
                             >
                                 <h3
-                                    class="text-xl font-bold mb-4 text-[#E8EBF0] group-hover:text-[#9AEBF7] transition-colors duration-1000"
+                                    class="text-xl font-bold mb-4 text-[#E8EBF0] group-hover:text-[#9AEBF7] group-[.is-active]:text-[#9AEBF7] transition-colors duration-1000"
                                     style="font-family: 'Paralucent', sans-serif;"
                                 >
                                     {item.title}
@@ -300,6 +299,62 @@ const benefits = [
             resizeCanvas();
             animateWaves();
             window.addEventListener("resize", resizeCanvas);
+
+            // Adiciona efeito de hover no mobile ao rolar a página ou tocar ("passar o dedo")
+            const setupMobileHover = () => {
+                const cards = document.querySelectorAll(".benefit-card");
+
+                // 1. Observer para acender as cartas no meio da tela no mobile
+                const observer = new IntersectionObserver(
+                    (entries) => {
+                        if (window.innerWidth >= 768) {
+                            entries.forEach((entry) =>
+                                entry.target.classList.remove("is-active"),
+                            );
+                            return;
+                        }
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add("is-active");
+                            } else {
+                                entry.target.classList.remove("is-active");
+                            }
+                        });
+                    },
+                    {
+                        rootMargin: "-35% 0px -35% 0px",
+                    },
+                );
+
+                cards.forEach((card) => {
+                    observer.observe(card);
+
+                    // 2. Tocar ou arrastar diretamente na carta força o efeito
+                    card.addEventListener(
+                        "touchstart",
+                        () => {
+                            if (window.innerWidth < 768) {
+                                card.classList.add("is-active");
+                            }
+                        },
+                        { passive: true },
+                    );
+                    card.addEventListener(
+                        "touchend",
+                        () => {
+                            if (window.innerWidth < 768) {
+                                setTimeout(
+                                    () => card.classList.remove("is-active"),
+                                    500,
+                                );
+                            }
+                        },
+                        { passive: true },
+                    );
+                });
+            };
+
+            setupMobileHover();
         }
     });
 </script>
