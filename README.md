@@ -17,17 +17,17 @@ O projeto apresenta o portfólio profissional de **Vinícius Benevides**, focand
 *Substitua as marcações abaixo com os links (ou caminhos locais, ex: `./public/print.png`) reais das imagens do seu projeto:*
 
 ### 🌟 Hero Section (Início)
-![Placeholder Hero](`./public/Virtus-Apex-Landing-Pages-Exclusivas-03-03-2026_10_32_AM.png`)
+![Placeholder Hero](./public/Virtus-Apex-Landing-Pages-Exclusivas-03-03-2026_10_32_AM.png)
 *(Substitua a URL acima pela imagem de sua Hero Section)*
 
 ### ✨ Diferenciais & Benefícios
-![Placeholder Diferenciais](`./public/Virtus-Apex-Landing-Pages-Exclusivas-03-03-2026_10_40_AM.png`)
-![Placeholder Benefícios](`./public/Virtus-Apex-Landing-Pages-Exclusivas-03-03-2026_10_41_AM.png`)
+![Placeholder Diferenciais](./public/Virtus-Apex-Landing-Pages-Exclusivas-03-03-2026_10_40_AM.png)
+![Placeholder Benefícios](./public/Virtus-Apex-Landing-Pages-Exclusivas-03-03-2026_10_41_AM.png)
 *(Substitua a URL acima pela imagem de outras sessões do site)*
 
 ### 💰 Planos e Preços
-![Placeholder Planos](`./public/Virtus-Apex-Landing-Pages-Exclusivas-03-03-2026_10_42_AM.png`)
-![Placeholder Preços](`./public/Virtus-Apex-Landing-Pages-Exclusivas-03-03-2026_10_43_AM.png`)
+![Placeholder Planos](./public/Virtus-Apex-Landing-Pages-Exclusivas-03-03-2026_10_42_AM.png)
+![Placeholder Preços](./public/Virtus-Apex-Landing-Pages-Exclusivas-03-03-2026_10_43_AM.png)
 *(Substitua a URL acima pela imagem da tabela de preços)*
 
 ## ⚙️ Como Rodar o Projeto Localmente
