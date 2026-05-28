@@ -1,48 +1,47 @@
 # Virtus Apex
+Welcome to the **Virtus Apex** project repository — a portfolio and services page focused on creating **High-Conversion Landing Pages** with exclusive, high-performance design.
 
-Bem-vindo ao repositório do projeto **Virtus Apex** — um portfólio e página de serviços focada na criação de **Landing Pages de Alta Conversão** com design exclusivo e de alto desempenho.
+## 💻 About the Project
+The project showcases the professional portfolio of **Vinícius Benevides**, focusing on complete Web Design and Development solutions aimed at turning visitors into customers. The Landing Page incorporates strategic sales sections, screenshot showcases, and dynamic carousels built from scratch.
 
-## 💻 Sobre o Projeto
+## 🚀 Technologies Used
+- **[Astro](https://astro.build/)** for routing and extremely fast HTML rendering.
+- **[Tailwind CSS](https://tailwindcss.com/)** for modern design and responsive styling.
+- **Vanilla JavaScript** for site micro-interactions (e.g.: Intersection Observers, Scroll Animations, Infinite Tickers).
 
-O projeto apresenta o portfólio profissional de **Vinícius Benevides**, focando em soluções completas de Web Design e Desenvolvimento com o objetivo de transformar visitantes em clientes. A Landing Page incorpora seções estratégicas de vendas, demonstrações de capturas e carrosséis dinâmicos criados do zero. 
+## 📸 Screenshots
 
-## 🚀 Tecnologias Utilizadas
-
-- **[Astro](https://astro.build/)** para a construção das rotas e renderização HTML extremamente rápida.
-- **[Tailwind CSS](https://tailwindcss.com/)** para o design moderno e estilos responsivos.
-- **JavaScript Vanilla** para micro-interações do site (ex: Intersection Observers, Animações no Scroll, Infinite Tickers).
-
-## 📸 Capturas de Tela (Screenshots)
-
-### 🌟 Hero Section (Início)
+### 🌟 Hero Section
 ![Placeholder Hero](./public/Virtus-Apex-Landing-Pages-Exclusivas-03-03-2026_10_32_AM.png)
 
-### ✨ Diferenciais & Benefícios
-![Placeholder Diferenciais](./public/Virtus-Apex-Landing-Pages-Exclusivas-03-03-2026_10_40_AM.png)
-![Placeholder Benefícios](./public/Virtus-Apex-Landing-Pages-Exclusivas-03-03-2026_10_41_AM.png)
+### ✨ Differentials & Benefits
+![Placeholder Differentials](./public/Virtus-Apex-Landing-Pages-Exclusivas-03-03-2026_10_40_AM.png)
+![Placeholder Benefits](./public/Virtus-Apex-Landing-Pages-Exclusivas-03-03-2026_10_41_AM.png)
 
-### 💰 Planos e Preços
-![Placeholder Planos](./public/Virtus-Apex-Landing-Pages-Exclusivas-03-03-2026_10_50_AM.png)
-![Placeholder Preços](./public/Virtus-Apex-Landing-Pages-Exclusivas-03-03-2026_10_50_AM1.png)
+### 💰 Plans & Pricing
+![Placeholder Plans](./public/Virtus-Apex-Landing-Pages-Exclusivas-03-03-2026_10_50_AM.png)
+![Placeholder Pricing](./public/Virtus-Apex-Landing-Pages-Exclusivas-03-03-2026_10_50_AM1.png)
 
-## ⚙️ Como Rodar o Projeto Localmente
+## ⚙️ How to Run Locally
 
-1. Clone o repositório
+1. Clone the repository
    ```bash
    git clone https://github.com/ViniciusBenevides/Virtus-Apex.git
    ```
-2. Instale as dependências
+
+2. Install dependencies
    ```bash
    npm install
    ```
-3. Inicie o servidor de desenvolvimento
+
+3. Start the development server
    ```bash
    npm run dev
    ```
-   *O site estará disponível normalmente em: `http://localhost:4321`*
+   *The site will be available at: `http://localhost:4321`*
 
-## 🌐 Open Graph / Compartilhamento
-O site conta com validação de SEO básico e uso das Tags **Open Graph**. Ao enviar a URL oficial do seu projeto em aplicativos como WhatsApp, Discord e LinkedIn, a Thumbnail customizada com o selo Virtus Apex aparecerá perfeitamente.
+## 🌐 Open Graph / Sharing
+The site includes basic SEO validation and **Open Graph** tag support. When sharing the official project URL on apps like WhatsApp, Discord, and LinkedIn, the custom thumbnail featuring the Virtus Apex badge will display perfectly.
 
 ---
-*Feito com muito design e foco em conversão por **Vinícius Benevides**.*
+*Crafted with design and a focus on conversion by **Vinícius Benevides**.*
