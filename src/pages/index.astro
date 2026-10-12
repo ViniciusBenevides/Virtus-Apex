@@ -1,41 +1,28 @@
 ---
 import "../styles/global.css";
 import Layout from "../layouts/Layout.astro";
-import background from "../assets/bg1-desktop-webp.png";
+import { getImage } from "astro:assets";
+import backgroundPng from "../assets/bg1-desktop-webp.png";
 
 // Secções refatoradas da Página
 import HeroSection from "../components/sections/HeroSection.astro";
 import InfiniteTicker from "../components/sections/InfiniteTicker.astro";
 import BenefitsSection from "../components/sections/BenefitsSection.astro";
-import LaptopCarousel from "../components/sections/LaptopCarousel.astro";
 import CaptureSection from "../components/sections/CaptureSection.astro";
 import NeedsSection from "../components/sections/NeedsSection.astro";
+import AutomationDemo from "../components/sections/AutomationDemo.astro";
+import CasesSection from "../components/sections/CasesSection.astro";
 import CreationProcess from "../components/sections/CreationProcess.astro";
 import PricingSection from "../components/sections/PricingSection.astro";
 import FaqSection from "../components/sections/FaqSection.astro";
 import FooterSection from "../components/sections/FooterSection.astro";
+
+// Fundo do hero: o PNG original (172 KB) é servido em WebP
+const background = await getImage({ src: backgroundPng, format: "webp" });
 ---
 
 <Layout title="Virtus Apex | Tecnologia e Estratégia Comercial">
 	<style is:global>
-		@font-face {
-			font-family: "Paralucent";
-			src: url("/src/fonts/fonnts.com-Paralucent_Medium.otf")
-				format("opentype");
-			font-weight: medium;
-			font-style: normal;
-			font-display: swap;
-		}
-
-		@font-face {
-			font-family: "Paralucent";
-			src: url("/src/fonts/fonnts.com-Paralucent_Light.otf")
-				format("opentype");
-			font-weight: light;
-			font-style: normal;
-			font-display: swap;
-		}
-
 		:root {
 			--c1: rgba(154, 235, 247, 1);
 			--c2: rgba(154, 235, 247, 0.1);
@@ -126,9 +113,11 @@ import FooterSection from "../components/sections/FooterSection.astro";
 
 		<BenefitsSection />
 
-		<LaptopCarousel />
-
 		<CaptureSection />
+
+		<AutomationDemo />
+
+		<CasesSection />
 
 		<NeedsSection />
 

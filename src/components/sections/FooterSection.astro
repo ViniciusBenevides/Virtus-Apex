@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import VirtusApex from "../../assets/virtus_Apex_logo.png";
+import VirtusApex from "../../assets/virtus-apex-logo-tecnologia.png";
 import LogoApex from "../../assets/logo-apex.png";
 import WorldMap from "../WorldMap.astro";
 ---
@@ -15,10 +15,10 @@ import WorldMap from "../WorldMap.astro";
                 >
             </p>
             <h2 class="footer-rotating-text" id="footer-rotating-text">
-                Atenda com mais agilidade.
+                Seu negócio. Nossa estratégia. Novas possibilidades.
             </h2>
             <p class="footer-description">
-                Cada empresa trava em um ponto diferente: atendimento lento, vendas desorganizadas, presença digital fraca ou processos manuais. Fale com a Virtus Apex e mostramos, na prática, como tecnologia e estratégia comercial podem resolver o seu.
+                Cada empresa trava em um ponto diferente: atendimento lento, vendas desorganizadas, presença digital fraca ou processos manuais. Em um diagnóstico de 30 minutos, mostramos onde está o seu gargalo e por onde começar.
             </p>
         </div>
 
@@ -35,7 +35,7 @@ import WorldMap from "../WorldMap.astro";
                 />
             </div>
             <p class="footer-designer-info">
-                Virtus Apex - Web Designer © 2025
+                Virtus Apex · Tecnologia & Estratégia © {new Date().getFullYear()}
             </p>
             <div class="footer-designer-avatar">
                 <span class="footer-designer-name">Virtus<br />Apex</span>
@@ -92,7 +92,7 @@ import WorldMap from "../WorldMap.astro";
                 <span>@VirtusApex</span>
             </a>
             <a
-                href="https://wa.me/5562981752097?text=Ol%C3%A1%2C+gostaria+de+solicitar+um+or%C3%A7amento."
+                href="https://wa.me/5562981752097?text=Oi%21+Vim+pelo+site+da+Virtus+Apex+e+quero+conversar."
                 target="_blank"
                 rel="noopener noreferrer"
                 class="footer-zap-btn"
@@ -441,10 +441,7 @@ import WorldMap from "../WorldMap.astro";
         );
         if (footerRotatingEl) {
             const phrases = [
-                "Atenda com mais agilidade.",
-                "Venda com processo.",
-                "Transforme visitas em clientes.",
-                "Opere com sistemas próprios.",
+                "Seu negócio. Nossa estratégia. Novas possibilidades.",
             ];
 
             const chars = "!<>-_\\/[]{}—=+*^?#________";
@@ -517,7 +514,8 @@ import WorldMap from "../WorldMap.astro";
                 });
             };
 
-            setTimeout(nextPhrase, 2000);
+            // Com uma frase só (o slogan), o texto fica fixo, sem embaralhar
+            if (phrases.length > 1) setTimeout(nextPhrase, 2000);
         }
 
         // --- Scroll to top ---
