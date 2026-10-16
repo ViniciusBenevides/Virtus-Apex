@@ -16,4 +16,4 @@ Site institucional da Virtus Apex (Astro). Vale para qualquer sessão do Claude 
 6. **Não suba arquivo solto** (print de tela, rascunho) dentro de `src/`.
 
 O merge é do dono, pelo botão "Create a merge commit" (o único habilitado). Push na `main` publica
-o site na Vercel.
+o site em virtusapex.com, pela Vercel, e cada PR ganha um link de prévia.
