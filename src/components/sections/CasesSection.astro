@@ -1,0 +1,261 @@
+---
+import { getImage } from "astro:assets";
+import drogaria from "../../assets/Drogaria-Cruzeiro-Entrega-Grátis-e-Rápida-03-01-2026_11_01_AM.png";
+import ragonete from "../../assets/Estetica-03-01-2026_10_59_AM.png";
+import raquel from "../../assets/Página-de-links-Raquel-Marques-03-02-2026_10_30_AM.png";
+import fondly from "../../assets/Fondly-Sublimados.png";
+import rema from "../../assets/Rema-Engenharia-03-01-2026_10_58_AM.png";
+import morada from "../../assets/Imóveis-em-Goiânia-03-01-2026_10_53_AM.png";
+import goncalves from "../../assets/Advogado-03-01-2026_10_50_AM.png";
+import virtusDoctor from "../../assets/Virtus-Doctor-03-01-2026_10_51_AM.png";
+
+const cases = [
+    { name: "Drogaria Cruzeiro", segment: "Farmácia", img: drogaria },
+    { name: "Studio Ragonete", segment: "Clínica de estética", img: ragonete },
+    { name: "Raquel Marques", segment: "Psicologia", img: raquel },
+    { name: "Fondly", segment: "Sublimados", img: fondly },
+    { name: "Rema Engenharia", segment: "Construtora", img: rema },
+    { name: "Residencial Morada dos Sonhos", segment: "Imobiliária", img: morada },
+    { name: "Gonçalves Advocacia", segment: "Advocacia", img: goncalves },
+    { name: "Virtus Doctor", segment: "Saúde", img: virtusDoctor },
+];
+
+// Prints de ~1900px servidos no tamanho do card (até ~300px, 2x para telas retina)
+const items = await Promise.all(
+    cases.map(async (c) => {
+        const [small, large] = await Promise.all([
+            getImage({ src: c.img, width: 400, format: "webp", quality: 78 }),
+            getImage({ src: c.img, width: 760, format: "webp", quality: 78 }),
+        ]);
+        return { ...c, src: large.src, srcset: `${small.src} 400w, ${large.src} 760w` };
+    }),
+);
+---
+
+<section class="cases-section relative z-20" id="projetos">
+    <div class="cases-head max-w-6xl mx-auto px-4 animate-on-scroll">
+        <span class="cases-badge">✦ Projetos entregues</span>
+        <h2 class="cases-title">Projetos da nossa equipe</h2>
+        <p class="cases-subtitle">
+            Sites e páginas no ar hoje, em segmentos bem diferentes. É o método
+            se adaptando a cada negócio.
+        </p>
+    </div>
+
+    {/* Faixa que passa sozinha; a lista aparece duas vezes para o loop não ter emenda */}
+    <div class="cases-marquee animate-on-scroll delay-100">
+        <ul class="cases-track" role="list">
+        {
+            [...items, ...items].map((item, i) => (
+                <li class="case-card" aria-hidden={i >= items.length ? "true" : undefined}>
+                    <div class="case-browser">
+                        <span class="case-dots" aria-hidden="true">
+                            <i />
+                            <i />
+                            <i />
+                        </span>
+                    </div>
+                    <div class="case-shot">
+                        <img
+                            src={item.src}
+                            srcset={item.srcset}
+                            sizes="(max-width: 640px) 260px, 320px"
+                            alt={i >= items.length ? "" : `Site de ${item.name}`}
+                            width="760"
+                            height="475"
+                            decoding="async"
+                        />
+                    </div>
+                    <div class="case-info">
+                        <span class="case-name">{item.name}</span>
+                        <span class="case-segment">{item.segment}</span>
+                    </div>
+                </li>
+            ))
+        }
+        </ul>
+    </div>
+</section>
+
+<style>
+    .cases-section {
+        padding: 96px 0 32px;
+        font-family: "Paralucent", sans-serif;
+    }
+
+    .cases-head {
+        text-align: center;
+        margin-bottom: 48px;
+    }
+
+    .cases-badge {
+        display: inline-block;
+        font-size: 14px;
+        color: #abaeb4;
+        padding: 8px 20px;
+        border: 1px solid #2a2d35;
+        border-radius: 999px;
+        letter-spacing: 0.5px;
+    }
+
+    .cases-title {
+        margin: 20px 0 16px;
+        font-size: 48px;
+        font-weight: 500;
+        font-style: italic;
+        line-height: 1.1;
+        color: #e8ebf0;
+    }
+
+    .cases-subtitle {
+        margin: 0 auto;
+        max-width: 560px;
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 1.6;
+        color: #abaeb4;
+    }
+
+    /* Faixa contínua: bordas esmaecidas, pausa ao passar o mouse ou focar */
+    .cases-marquee {
+        overflow: hidden;
+        padding: 8px 0 16px;
+        mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    }
+
+    .cases-track {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        width: max-content;
+        animation: cases-scroll 60s linear infinite;
+    }
+
+    .cases-marquee:hover .cases-track,
+    .cases-marquee:focus-within .cases-track {
+        animation-play-state: paused;
+    }
+
+    @keyframes cases-scroll {
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(-50%);
+        }
+    }
+
+    .case-card {
+        flex: 0 0 320px;
+        /* margem em vez de gap: as duas metades da faixa ficam do mesmo tamanho */
+        margin-right: 20px;
+        border-radius: 16px;
+        overflow: hidden;
+        background: #0f1115;
+        border: 1px solid #1f2125;
+        transition:
+            border-color 0.25s ease,
+            transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+            box-shadow 0.25s ease;
+    }
+
+    @media (hover: hover) {
+        .case-card:hover {
+            border-color: rgba(154, 235, 247, 0.45);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(154, 235, 247, 0.08);
+        }
+        .case-card:hover .case-shot img {
+            transform: scale(1.03);
+        }
+    }
+
+    /* Barrinha de navegador: deixa claro que é um site no ar */
+    .case-browser {
+        height: 22px;
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+        background: #15171e;
+        border-bottom: 1px solid #1f2125;
+    }
+    .case-dots {
+        display: flex;
+        gap: 5px;
+    }
+    .case-dots i {
+        width: 6px;
+        height: 6px;
+        border-radius: 999px;
+        background: #2a2d35;
+    }
+
+    .case-shot {
+        aspect-ratio: 16 / 10;
+        overflow: hidden;
+        background: #15171e;
+    }
+    .case-shot img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .case-info {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        padding: 14px 16px 16px;
+    }
+    .case-name {
+        font-size: 15px;
+        font-weight: 500;
+        color: #e8ebf0;
+    }
+    .case-segment {
+        font-size: 13px;
+        font-weight: 300;
+        color: #9aebf7;
+    }
+
+    @media (max-width: 640px) {
+        .cases-section {
+            padding-top: 64px;
+        }
+        .cases-title {
+            font-size: 36px;
+        }
+        .case-card {
+            flex-basis: 260px;
+            margin-right: 14px;
+        }
+        .cases-track {
+            animation-duration: 45s;
+        }
+    }
+
+    /* Com "reduzir movimento": a faixa para e vira rolagem manual */
+    @media (prefers-reduced-motion: reduce) {
+        .cases-marquee {
+            overflow-x: auto;
+            mask-image: none;
+            -webkit-mask-image: none;
+        }
+        .cases-track {
+            animation: none;
+            padding: 0 16px;
+        }
+        .case-card[aria-hidden="true"] {
+            display: none;
+        }
+        .case-card,
+        .case-shot img {
+            transition: none;
+        }
+    }
+</style>

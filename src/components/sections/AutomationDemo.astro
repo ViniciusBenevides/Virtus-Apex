@@ -1,0 +1,489 @@
+---
+// Demonstração do robô de atendimento (WhatsApp + Google Agenda).
+// Os tempos de cada etapa batem com as legendas do vídeo em /public/demo.
+const steps = [
+    { time: 0, title: "Seu cliente chama no WhatsApp", text: "A qualquer hora, até com o estabelecimento fechado." },
+    { time: 7, title: "Confirmação na hora", text: "O robô oferece os horários livres e já confirma o agendamento." },
+    { time: 9.25, title: "Cai direto na agenda", text: "O horário entra no Google Agenda do profissional." },
+    { time: 12.5, title: "Mandou áudio? Ele escuta", text: "Entende mensagens de voz e responde em áudio." },
+    { time: 25.25, title: "Confirmação na véspera", text: "Um dia antes, o robô pede para o cliente confirmar." },
+    { time: 29.5, title: "Pedido de avaliação", text: "Depois do atendimento, convida o cliente a avaliar no Google." },
+    { time: 31.25, title: "Chama o cliente de volta", text: "No tempo certo, lembra o cliente de agendar de novo." },
+];
+const fmt = (t) => `0:${String(Math.floor(t)).padStart(2, "0")}`;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+---
+
+<section class="demo-section relative z-20 px-4" id="demonstracao">
+    <div class="demo-layout max-w-5xl mx-auto">
+        <div class="demo-intro animate-on-scroll">
+            <span class="demo-badge">✦ Demonstração</span>
+            <h2 class="demo-title">Automação na prática</h2>
+            <p class="demo-subtitle">
+                É a etapa Atender do Método Apex: um robô no WhatsApp que conversa
+                com o cliente, agenda no Google Agenda, confirma na véspera e pede
+                avaliação. Esta é uma demonstração de como funcionaria em uma
+                barbearia.
+            </p>
+        </div>
+
+        <div class="demo-phone animate-on-scroll delay-100">
+            <video
+                id="demo-video"
+                class="demo-video"
+                src={`${base}/demo/robo-whatsapp-agenda.mp4`}
+                poster={`${base}/demo/robo-whatsapp-agenda-capa.jpg`}
+                width="720"
+                height="1280"
+                muted
+                loop
+                playsinline
+                preload="none"
+                aria-label="Vídeo de demonstração: robô de atendimento no WhatsApp agendando um corte de cabelo no Google Agenda"
+            ></video>
+
+            <button
+                type="button"
+                class="demo-play"
+                id="demo-play"
+                aria-label="Reproduzir demonstração"
+                hidden
+            >
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M8 5.5v13l11-6.5z"></path>
+                </svg>
+            </button>
+
+            <button
+                type="button"
+                class="demo-sound"
+                id="demo-sound"
+                aria-pressed="false"
+            >
+                <svg class="demo-sound-off" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M11 5 6 9H2v6h4l5 4V5z"></path>
+                    <line x1="22" y1="9" x2="16" y2="15"></line>
+                    <line x1="16" y1="9" x2="22" y2="15"></line>
+                </svg>
+                <svg class="demo-sound-on" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M11 5 6 9H2v6h4l5 4V5z"></path>
+                    <path d="M15.5 8.5a5 5 0 0 1 0 7"></path>
+                    <path d="M19 5a10 10 0 0 1 0 14"></path>
+                </svg>
+                <span class="demo-sound-label">Ativar som</span>
+            </button>
+        </div>
+
+        <div class="demo-steps-wrap animate-on-scroll delay-200">
+            <ol class="demo-steps" id="demo-steps">
+                {
+                    steps.map((step, i) => (
+                        <li>
+                            <button
+                                type="button"
+                                class="demo-step"
+                                data-time={step.time}
+                                data-end={steps[i + 1]?.time ?? 34}
+                                aria-current={i === 0 ? "step" : undefined}
+                            >
+                                <span class="demo-step-time">{fmt(step.time)}</span>
+                                <span class="demo-step-body">
+                                    <span class="demo-step-title">{step.title}</span>
+                                    <span class="demo-step-text">{step.text}</span>
+                                </span>
+                                <span class="demo-step-progress" aria-hidden="true" />
+                            </button>
+                        </li>
+                    ))
+                }
+            </ol>
+
+            <a
+                href="https://wa.me/5562981752097?text=Oi%21+Vi+a+demonstra%C3%A7%C3%A3o+do+rob%C3%B4+no+site+e+quero+algo+assim+na+minha+empresa."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="demo-cta"
+            >
+                Quero isso na minha empresa
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 19.5L19.5 5" stroke="#9AEBF7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M9.5 5H19.5V15" stroke="#9AEBF7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    .demo-section {
+        padding-top: 96px;
+        padding-bottom: 32px;
+        font-family: "Paralucent", sans-serif;
+    }
+
+    /* Desktop: texto + etapas à esquerda, celular à direita */
+    .demo-layout {
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        grid-template-areas:
+            "intro phone"
+            "steps phone";
+        column-gap: 64px;
+        row-gap: 32px;
+        align-items: start;
+    }
+
+    .demo-intro {
+        grid-area: intro;
+    }
+    .demo-phone {
+        grid-area: phone;
+    }
+    .demo-steps-wrap {
+        grid-area: steps;
+    }
+
+    .demo-badge {
+        display: inline-block;
+        font-size: 14px;
+        color: #abaeb4;
+        padding: 8px 20px;
+        border: 1px solid #2a2d35;
+        border-radius: 999px;
+        letter-spacing: 0.5px;
+    }
+
+    .demo-title {
+        margin: 20px 0 16px;
+        font-size: 48px;
+        font-weight: 500;
+        font-style: italic;
+        line-height: 1.1;
+        color: #e8ebf0;
+    }
+
+    .demo-subtitle {
+        margin: 0;
+        max-width: 520px;
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 1.6;
+        color: #abaeb4;
+    }
+
+    /* Moldura do vídeo (o próprio vídeo já traz o celular desenhado) */
+    .demo-phone {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 9 / 16;
+        border-radius: 28px;
+        overflow: hidden;
+        background: #0f1115;
+        border: 1px solid #2a2d35;
+        box-shadow:
+            0 30px 80px rgba(0, 0, 0, 0.55),
+            0 0 0 6px rgba(154, 235, 247, 0.04);
+    }
+
+    .demo-video {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .demo-play {
+        position: absolute;
+        inset: 0;
+        margin: auto;
+        width: 72px;
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        border: 1px solid rgba(154, 235, 247, 0.5);
+        background: rgba(15, 17, 21, 0.75);
+        color: #9aebf7;
+        cursor: pointer;
+        backdrop-filter: blur(6px);
+        transition: transform 0.15s ease;
+    }
+    .demo-play[hidden] {
+        display: none;
+    }
+    .demo-play:active {
+        transform: scale(0.95);
+    }
+
+    .demo-sound {
+        position: absolute;
+        right: 12px;
+        bottom: 12px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 44px;
+        padding: 0 16px;
+        border-radius: 999px;
+        border: 1px solid #2a2d35;
+        background: rgba(15, 17, 21, 0.8);
+        color: #e8ebf0;
+        font-family: inherit;
+        font-size: 13px;
+        cursor: pointer;
+        backdrop-filter: blur(6px);
+        transition:
+            border-color 0.2s ease,
+            transform 0.15s ease;
+    }
+    .demo-sound:hover {
+        border-color: #3a3d45;
+    }
+    .demo-sound:active {
+        transform: scale(0.97);
+    }
+    .demo-sound-on,
+    .demo-sound[aria-pressed="true"] .demo-sound-off {
+        display: none;
+    }
+    .demo-sound[aria-pressed="true"] .demo-sound-on {
+        display: block;
+        color: #9aebf7;
+    }
+
+    /* Etapas: clicar leva o vídeo até aquele momento */
+    .demo-steps {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        border-top: 1px solid #1f2125;
+    }
+
+    .demo-step {
+        position: relative;
+        display: flex;
+        gap: 16px;
+        width: 100%;
+        padding: 14px 4px;
+        border: 0;
+        border-bottom: 1px solid #1f2125;
+        background: transparent;
+        text-align: left;
+        font-family: inherit;
+        cursor: pointer;
+        overflow: hidden;
+    }
+
+    .demo-step-time {
+        flex-shrink: 0;
+        width: 36px;
+        padding-top: 2px;
+        font-size: 13px;
+        color: #5c666f;
+        font-variant-numeric: tabular-nums;
+        transition: color 0.2s ease;
+    }
+
+    .demo-step-body {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .demo-step-title {
+        font-size: 16px;
+        font-weight: 500;
+        color: #abaeb4;
+        transition: color 0.2s ease;
+    }
+
+    .demo-step-text {
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 1.5;
+        color: #5c666f;
+        transition: color 0.2s ease;
+    }
+
+    .demo-step:hover .demo-step-title {
+        color: #e8ebf0;
+    }
+
+    .demo-step[aria-current="step"] .demo-step-time {
+        color: #9aebf7;
+    }
+    .demo-step[aria-current="step"] .demo-step-title {
+        color: #e8ebf0;
+    }
+    .demo-step[aria-current="step"] .demo-step-text {
+        color: #abaeb4;
+    }
+
+    /* Barra de progresso da etapa atual */
+    .demo-step-progress {
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        width: 100%;
+        height: 1px;
+        background: #9aebf7;
+        transform: scaleX(0);
+        transform-origin: left;
+    }
+    .demo-step[aria-current="step"] .demo-step-progress {
+        transform: scaleX(var(--progress, 0));
+    }
+
+    .demo-step:focus-visible {
+        outline: 1px solid #9aebf7;
+        outline-offset: -1px;
+    }
+
+    .demo-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        min-height: 48px;
+        margin-top: 28px;
+        padding: 12px 28px;
+        border-radius: 999px;
+        border: 1px solid #2a2d35;
+        background: #0f1115;
+        color: #e8ebf0;
+        font-size: 15px;
+        text-decoration: none;
+        transition:
+            border-color 0.2s ease,
+            background-color 0.2s ease,
+            transform 0.15s ease;
+    }
+    .demo-cta:hover {
+        border-color: #9aebf7;
+        background: #15171e;
+    }
+    .demo-cta:active {
+        transform: scale(0.97);
+    }
+
+    @media (max-width: 860px) {
+        .demo-section {
+            padding-top: 64px;
+        }
+        .demo-layout {
+            grid-template-columns: 1fr;
+            grid-template-areas:
+                "intro"
+                "phone"
+                "steps";
+            row-gap: 32px;
+        }
+        .demo-intro {
+            text-align: center;
+        }
+        .demo-subtitle {
+            margin: 0 auto;
+        }
+        .demo-title {
+            font-size: 36px;
+        }
+        .demo-phone {
+            width: min(300px, 100%);
+            margin: 0 auto;
+        }
+        .demo-cta {
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .demo-step-progress {
+            display: none;
+        }
+    }
+</style>
+
+<script is:inline>
+    (() => {
+        const video = document.getElementById("demo-video");
+        const playBtn = document.getElementById("demo-play");
+        const soundBtn = document.getElementById("demo-sound");
+        const steps = [...document.querySelectorAll("#demo-steps .demo-step")];
+        if (!video) return;
+
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        let userPaused = false;
+
+        const play = () => {
+            const p = video.play();
+            if (p && p.catch) p.catch(() => (playBtn.hidden = false));
+        };
+
+        // Toca só quando a seção está visível; com "reduzir movimento", espera o clique
+        if (reduceMotion) {
+            playBtn.hidden = false;
+        } else if ("IntersectionObserver" in window) {
+            new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting && !userPaused) play();
+                        else if (!entry.isIntersecting) video.pause();
+                    });
+                },
+                { threshold: 0.4 },
+            ).observe(video);
+        }
+
+        playBtn.addEventListener("click", () => {
+            userPaused = false;
+            play();
+        });
+        video.addEventListener("play", () => (playBtn.hidden = true));
+        video.addEventListener("click", () => {
+            if (video.paused) {
+                userPaused = false;
+                play();
+            } else {
+                userPaused = true;
+                video.pause();
+                playBtn.hidden = false;
+            }
+        });
+
+        soundBtn.addEventListener("click", () => {
+            video.muted = !video.muted;
+            const on = !video.muted;
+            soundBtn.setAttribute("aria-pressed", String(on));
+            soundBtn.querySelector(".demo-sound-label").textContent = on ? "Som ativado" : "Ativar som";
+            if (on && video.paused) play();
+        });
+
+        // Etapa atual acompanha o vídeo; clicar numa etapa pula para ela
+        const update = () => {
+            const t = video.currentTime;
+            steps.forEach((step) => {
+                const start = parseFloat(step.dataset.time);
+                const end = parseFloat(step.dataset.end);
+                const active = t >= start && t < end;
+                if (active) {
+                    step.setAttribute("aria-current", "step");
+                    step.style.setProperty("--progress", ((t - start) / (end - start)).toFixed(3));
+                } else {
+                    step.removeAttribute("aria-current");
+                }
+            });
+        };
+        video.addEventListener("timeupdate", update);
+
+        steps.forEach((step) => {
+            step.addEventListener("click", () => {
+                if (video.readyState === 0) video.load();
+                video.currentTime = parseFloat(step.dataset.time) + 0.05;
+                userPaused = false;
+                play();
+                update();
+            });
+        });
+    })();
+</script>

@@ -1,28 +1,20 @@
 ---
 const benefits = [
     {
-        title: "+ Automação",
-        text: "Chatbots e fluxos automáticos respondem clientes com agilidade, organizam as solicitações e reduzem tarefas repetitivas, liberando sua equipe para o que exige atenção humana.",
+        title: "01. Atrair",
+        text: "Site, Instagram e anúncios trabalhando juntos para trazer o cliente certo. O tráfego pago entra como parte do método, nunca como um serviço solto.",
     },
     {
-        title: "+ Estrutura Comercial",
-        text: "Tráfego pago e social media para atrair a demanda certa, somados a um processo de vendas organizado, para que nenhum contato se perca entre o primeiro clique e o fechamento.",
+        title: "02. Atender",
+        text: "Um chatbot com IA no WhatsApp oficial responde na hora, tira dúvidas, qualifica o contato e agenda, inclusive fora do horário comercial.",
     },
     {
-        title: "+ Presença Digital",
-        text: "Sites institucionais e landing pages com design exclusivo, que apresentam seu negócio com clareza, transmitem confiança e transformam visitas em contatos comerciais.",
+        title: "03. Organizar",
+        text: "Cada contato entra no CRM com dono, etapa e próxima ação. Sua equipe vende com processo, sem depender de memória ou de planilhas soltas.",
     },
     {
-        title: "+ Sistemas sob Medida",
-        text: "CRM, sistemas internos, agendamento e ferramentas criadas para o seu processo, em vez de adaptar a sua operação a softwares genéricos que não conversam entre si.",
-    },
-    {
-        title: "+ Integração",
-        text: "Atendimento, marketing, site e sistema planejados em conjunto. Cada frente complementa a outra, em vez de funcionar como um serviço isolado de fornecedores diferentes.",
-    },
-    {
-        title: "- Retrabalho",
-        text: "Com processos definidos e ferramentas adequadas, sua empresa depende menos de controles manuais, planilhas soltas e improviso para atender, vender e acompanhar clientes.",
+        title: "04. Medir e ajustar",
+        text: "Os dados do atendimento voltam para a campanha. Você sabe de onde vêm os clientes, onde o funil trava e o que ajustar a cada mês.",
     },
 ];
 ---
@@ -104,15 +96,20 @@ const benefits = [
                 class="text-center text-3xl md:text-4xl mb-12 md:mb-16 font-medium text-[#ABAEB4] animate-on-scroll"
                 style="font-family: 'Paralucent', sans-serif;"
             >
-                Como a <span class="text-[#E8EBF0] font-bold">Virtus Apex</span> pode
-                ajudar sua empresa:
+                Como funciona o <span class="text-[#E8EBF0] font-bold">Método Apex</span>
             </h2>
+            <p
+                class="text-center text-[16px] md:text-[18px] font-light text-[#ABAEB4] -mt-6 md:-mt-10 mb-12 md:mb-16 animate-on-scroll"
+                style="font-family: 'Paralucent', sans-serif;"
+            >
+                Quatro etapas conectadas, em que cada uma alimenta a próxima.
+            </p>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {
                     benefits.map((item, index) => (
                         <div
-                            class={`animate-on-scroll delay-${((index % 3) + 1) * 100} h-full`}
+                            class={`animate-on-scroll delay-${((index % 2) + 1) * 100} h-full`}
                         >
                             <div
                                 class={`benefit-card h-full group p-8 rounded-3xl bg-[#0a0b0f] border border-[#1f2125] hover:border-[#9AEBF7]/50 hover:shadow-[0_8px_30px_rgba(154,235,247,0.12)] transition-all duration-1000 ease-in-out hover:-translate-y-2 [&.is-active]:border-[#9AEBF7]/50 [&.is-active]:shadow-[0_8px_30px_rgba(154,235,247,0.12)] [&.is-active]:-translate-y-2 active:scale-[0.98] active:translate-y-0 cursor-pointer`}

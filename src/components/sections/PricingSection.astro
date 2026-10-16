@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import VirtusApex from "../../assets/virtus_Apex_logo.png";
+import VirtusApex from "../../assets/virtus-apex-logo-tecnologia.png";
 import astroLogoFull from "../../assets/logo-astra.png";
 ---
 
@@ -11,7 +11,7 @@ import astroLogoFull from "../../assets/logo-astra.png";
             <div class="pricing-left-top">
                 <Image
                     src={astroLogoFull}
-                    alt="Logo"
+                    alt=""
                     width={80}
                     height={80}
                     class="pricing-logo-icon"
@@ -23,7 +23,7 @@ import astroLogoFull from "../../assets/logo-astra.png";
             <div class="pricing-left-bottom">
                 <Image
                     src={VirtusApex}
-                    alt="Logo"
+                    alt="Virtus Apex"
                     width={350}
                     height={350}
                     class="pricing-logo-bottom"
@@ -40,28 +40,40 @@ import astroLogoFull from "../../assets/logo-astra.png";
                 </div>
 
                 <div class="pricing-phone-content">
-                    <h2 class="pricing-title">Quanto custa?</h2>
+                    <h2 class="pricing-title">
+                        Quanto custa um cliente que mandou mensagem e ninguém
+                        respondeu?
+                    </h2>
 
                     <p class="pricing-desc">
-                        Quanto custa <strong
-                            >perder clientes</strong
-                        > por ter uma página que não transmite o valor do seu
-                        negócio e desperdiça o investimento em tráfego?
+                        Cada empresa está em um momento diferente. Por isso
+                        trabalhamos em três níveis, e você começa pelo que faz
+                        sentido agora.
                     </p>
 
-                    <div class="pricing-divider"></div>
+                    <ul class="pricing-tiers">
+                        <li class="pricing-tier">
+                            <strong class="pricing-tier-name">Presença digital</strong>
+                            <span class="pricing-tier-what">Site ou landing page e gestão do Instagram.</span>
+                            <span class="pricing-tier-who">Para empresas que precisam ser encontradas e transmitir confiança.</span>
+                        </li>
+                        <li class="pricing-tier">
+                            <strong class="pricing-tier-name">Atendimento automático</strong>
+                            <span class="pricing-tier-what">Chatbot com IA no WhatsApp oficial, com agendamento, confirmação na véspera e convite para voltar.</span>
+                            <span class="pricing-tier-who">Para empresas que recebem mais contatos do que a equipe consegue responder.</span>
+                        </li>
+                        <li class="pricing-tier">
+                            <strong class="pricing-tier-name">Estrutura comercial completa</strong>
+                            <span class="pricing-tier-what">CRM, sistemas sob medida, tráfego pago integrado e indicadores.</span>
+                            <span class="pricing-tier-who">Para empresas que querem vender com processo e previsibilidade.</span>
+                        </li>
+                    </ul>
 
                     <p class="pricing-subtitle">
-                        Uma landing page exclusiva<br />
-                        custa <span class="pricing-highlight"
-                            >muito menos e vale muito mais.</span
-                        >
+                        O valor depende do porte e do momento da sua empresa. No
+                        diagnóstico, você sai sabendo o que faz sentido e quanto
+                        custa.
                     </p>
-
-                    <div class="pricing-value" id="pricing-value">
-                        R$ <span class="pricing-digit" id="digit-1">6</span
-                        >?<span class="pricing-digit" id="digit-2">9</span>?
-                    </div>
 
                     {/* Spinner Button */}
                     <div
@@ -100,16 +112,16 @@ import astroLogoFull from "../../assets/logo-astra.png";
                             class="absolute bottom-0 right-[30px] w-[2px] h-[2px] bg-white rounded-full z-20 shadow-[0_0_2px_white]"
                         ></span>
                         <a
-                            href="https://wa.me/5562981752097?text=Ol%C3%A1%2C+gostaria+de+solicitar+um+or%C3%A7amento."
+                            href="https://wa.me/5562981752097?text=Oi%21+Vim+pelo+site+e+quero+saber+o+investimento+para+a+minha+empresa."
                             target="_blank"
                             rel="noopener noreferrer"
                             class="absolute inset-0 z-30 flex items-center justify-center rounded-full"
                         >
                             <span
-                                class="tracking-widest font-medium mr-3 text-[14px] md:text-[15px]"
+                                class="tracking-wide font-medium mr-3 text-[14px] md:text-[15px]"
                                 style="font-family: 'Paralucent', sans-serif; color: #E8EBF0;"
                             >
-                                PEDIR ORÇAMENTO
+                                Quero saber o investimento
                             </span>
                             <span
                                 class="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
@@ -144,46 +156,34 @@ import astroLogoFull from "../../assets/logo-astra.png";
             </div>
         </div>
 
-        {/* --- Coluna Direita (Benefícios) --- */}
+        {/* --- Coluna Direita (Garantias) --- */}
         <div class="pricing-right animate-on-scroll delay-300">
             <div class="pricing-benefit">
                 <span class="pricing-benefit-dot"></span>
                 <div>
-                    <strong class="pricing-benefit-title"
-                        >Entrega rápida:</strong
-                    >
-                    <span class="pricing-benefit-text"
-                        >sua landing page pronta em poucos dias.</span
-                    >
+                    <strong class="pricing-benefit-title">Proposta em até 24h</strong>
+                    <span class="pricing-benefit-text">depois do diagnóstico.</span>
                 </div>
             </div>
             <div class="pricing-benefit">
                 <span class="pricing-benefit-dot"></span>
                 <div>
-                    <strong class="pricing-benefit-title">Exclusividade:</strong
-                    >
-                    <span class="pricing-benefit-text"
-                        >uma página única, criada só para a sua marca.</span
-                    >
+                    <strong class="pricing-benefit-title">Prazo e responsável</strong>
+                    <span class="pricing-benefit-text">definidos para cada etapa.</span>
                 </div>
             </div>
             <div class="pricing-benefit">
                 <span class="pricing-benefit-dot"></span>
                 <div>
-                    <strong class="pricing-benefit-title">Segurança:</strong>
-                    <span class="pricing-benefit-text"
-                        >suporte por 10 dias após a entrega do projeto.</span
-                    >
+                    <strong class="pricing-benefit-title">Ajustes antes do uso:</strong>
+                    <span class="pricing-benefit-text">você aprova tudo antes de entrar no ar.</span>
                 </div>
             </div>
             <div class="pricing-benefit">
                 <span class="pricing-benefit-dot"></span>
                 <div>
-                    <strong class="pricing-benefit-title">Performance:</strong>
-                    <span class="pricing-benefit-text"
-                        >seu site carregando em menos de 3s, pronto para
-                        converter.</span
-                    >
+                    <strong class="pricing-benefit-title">Indicadores combinados</strong>
+                    <span class="pricing-benefit-text">para acompanhar o resultado.</span>
                 </div>
             </div>
         </div>
@@ -308,7 +308,8 @@ import astroLogoFull from "../../assets/logo-astra.png";
 
     .pricing-title {
         font-family: "Paralucent", sans-serif;
-        font-size: 36px;
+        font-size: 26px;
+        line-height: 1.2;
         font-weight: 700;
         color: #e8ebf0;
         margin: 0 0 20px 0;
@@ -321,6 +322,44 @@ import astroLogoFull from "../../assets/logo-astra.png";
         color: #abaeb4;
         line-height: 1.7;
         margin: 0 0 24px 0;
+    }
+
+    /* Os três níveis de solução dentro do card */
+    .pricing-tiers {
+        list-style: none;
+        margin: 0 0 24px 0;
+        padding: 0;
+        text-align: left;
+        border-top: 1px solid #1f2125;
+    }
+
+    .pricing-tier {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        padding: 16px 0;
+        border-bottom: 1px solid #1f2125;
+        font-family: "Paralucent", sans-serif;
+    }
+
+    .pricing-tier-name {
+        font-size: 16px;
+        font-weight: 600;
+        color: #e8ebf0;
+    }
+
+    .pricing-tier-what {
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 1.5;
+        color: #abaeb4;
+    }
+
+    .pricing-tier-who {
+        font-size: 13px;
+        font-weight: 300;
+        line-height: 1.5;
+        color: #9aebf7;
     }
 
     .pricing-desc strong {
@@ -464,7 +503,7 @@ import astroLogoFull from "../../assets/logo-astra.png";
         }
 
         .pricing-title {
-            font-size: 28px;
+            font-size: 22px;
         }
 
         .pricing-logo-bottom {
