@@ -30,6 +30,7 @@ const noindex = import.meta.env.PUBLIC_NOINDEX === "true";
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="theme-color" content="#06060E" />
 		<link rel="icon" type="image/x-icon" href={`${base}/logo-apex.ico`} />
+		<link rel="apple-touch-icon" href={`${base}/apple-touch-icon.png`} />
 		<link rel="canonical" href={new URL(canonicalPath, "https://virtusapex.com")} />
 		{noindex && <meta name="robots" content="noindex" />}
 		<meta name="generator" content={Astro.generator} />
@@ -47,7 +48,7 @@ const noindex = import.meta.env.PUBLIC_NOINDEX === "true";
 		/>
 		<meta
 			property="og:image"
-			content="https://virtusapex.com/og-image.png"
+			content="https://virtusapex.com/og-image.png?v=2"
 		/>
 		<!-- Adicione sua imagem de capa (ex: 1200x630) na pasta public com o nome og-image.png -->
 
@@ -61,7 +62,7 @@ const noindex = import.meta.env.PUBLIC_NOINDEX === "true";
 		/>
 		<meta
 			property="twitter:image"
-			content="https://virtusapex.com/og-image.png"
+			content="https://virtusapex.com/og-image.png?v=2"
 		/>
 
 		<title>{title}</title>

@@ -9,6 +9,8 @@ import remaImg from "../../assets/rema.engenharia_.jpg";
 import studioImg from "../../assets/studio_ragonete.jpg";
 import fondlyImg from "../../assets/fondly_logo.png";
 
+const home = import.meta.env.BASE_URL.replace(/\/$/, "") + "/";
+
 const teamMembers = [
     { id: 1, handle: "@drogariacruzeiro", img: drogariaImg },
     { id: 2, handle: "@moradadossonhoswr", img: moradaImg },
@@ -32,16 +34,18 @@ const avatars = await Promise.all(
     <div
         class="mb-8 opacity-100 hover:opacity-100 transition-opacity duration-500 animate-on-scroll"
     >
-        <Image
-            src={VirtusApex}
-            alt="Virtus Apex"
-            loading="eager"
-            fetchpriority="high"
-            width={324}
-            height={75}
-            densities={[1, 2]}
-            class="object-contain w-[200px] md:w-[324px]"
-        />
+        <a href={home} aria-label="Virtus Apex: voltar ao início" class="block">
+            <Image
+                src={VirtusApex}
+                alt="Virtus Apex"
+                loading="eager"
+                fetchpriority="high"
+                width={324}
+                height={75}
+                densities={[1, 2]}
+                class="object-contain w-[200px] md:w-[324px]"
+            />
+        </a>
     </div>
 
     <div class="flex flex-col items-center justify-center mb-8">
